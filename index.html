@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abhishek Kumar | Mission Control</title>
-<meta name="description" content="Abhishek Kumar, software developer in Bangalore. 22 projects tracked as missions: live demos and source across full-stack, AI and browser apps.">
+<meta name="description" content="Abhishek Kumar, software developer in Bangalore. 25 projects tracked as missions: live demos and source across full-stack, AI and browser apps.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,Arial,sans-serif}
 html{scroll-behavior:smooth}
@@ -83,7 +83,7 @@ footer{padding:26px 4vw 40px;color:#5b7a9d;font-size:12px;text-align:center;font
 </header>
 
 <div class="telemetry" id="top">
-  <div class="t"><div class="v">22</div><div class="l">Missions Logged</div></div>
+  <div class="t"><div class="v">25</div><div class="l">Missions Logged</div></div>
   <div class="t"><div class="v">12</div><div class="l">Full-Stack &amp; AI Builds</div></div>
   <div class="t"><div class="v">02</div><div class="l">Internship Tours</div></div>
   <div class="t"><div class="v">01</div><div class="l">SSB Recommendation</div></div>
@@ -165,6 +165,18 @@ const P=[
  {name:'Mudra Mirror',id:'MSN-007',stat:'ft',statText:'● STATUS: FIELD TRIAL · ACCURACY UNVALIDATED',fill:70,fillColor:'#4dd0ff',
   desc:'On-device webcam ML: show a Bharatanatyam hand gesture (mudra) and the app names it. Ten gestures, mirror-game mode, no video uploaded.',
   chips:['JavaScript','Hand-landmark model','On-device'],live:'https://abhisheksinghh23.github.io/mudra-mirror/',code:'https://github.com/Abhisheksinghh23/mudra-mirror'},
+ {name:'Reach',id:'MSN-013',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Own routing engine over BMTC timetables: drop a pin, scrub the time, see reachable stops, add a second pin for meeting stops. Scheduled data, not live.',
+  chips:["TypeScript", "Vite", "Leaflet", "Web Worker", "Connection Scan", "GTFS"],live:'https://abhisheksinghh23.github.io/reach/',code:'https://github.com/Abhisheksinghh23/reach',
+  note:'Scheduled BMTC timetable data, not live arrivals. Weekly pattern valid 9 Nov 2026 to 9 Nov 2027; holidays and strikes are not modelled. Walking uses straight-line distance, not streets. Data files are ODbL.'},
+ {name:'Echo',id:'MSN-014',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Shazam-style engine in the browser: add songs, play a clip, watch peaks, hashes and votes find the match. Own FFT and fingerprinting.',
+  chips:["JavaScript", "Web Audio", "FFT", "Audio fingerprinting"],live:'https://abhisheksinghh23.github.io/echo/',code:'https://github.com/Abhisheksinghh23/echo',
+  note:'Matches songs you add plus 3 built-in demo tracks. No humming, no big catalogue, no pitch or tempo changes. Tested on synthetic tracks and five CC0 recordings; the microphone was only tested with a simulated input.'},
+ {name:'Shiv Shakti Lab',id:'MSN-015',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Fly a lander and plan rover routes on real 3 m NASA LROC terrain near Chandrayaan-3. Educational demo, not mission software.',
+  chips:["JavaScript", "Web Worker", "Dijkstra", "NASA LROC terrain"],live:'https://abhisheksinghh23.github.io/shiv-shakti-lab/',code:'https://github.com/Abhisheksinghh23/shiv-shakti-lab',
+  note:'Educational demo, not mission software. The terrain is a pre-landing model with 3 m cells, so rocks are not resolved; 0.33% of cells were filled. Credit: NASA/GSFC/Arizona State University.'},
 ];
 const MORE=[
  {name:'Mission Control',id:'MSN-008',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NO DEMO LINKED',fill:85,fillColor:'#ffd166',
