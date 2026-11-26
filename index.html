@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhishek Kumar | Mission Control</title>
+<meta name="description" content="Abhishek Kumar, software developer in Bangalore. 22 projects tracked as missions: live demos and source across full-stack, AI and browser apps.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:#0a1628;color:#cfe3ff;min-height:100vh}
+.mono{font-family:Consolas,'Courier New',monospace}
+.bar{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:12px 4vw;border-bottom:1px solid #1e3a5f;background:rgba(13,27,48,.97)}
+.call{font-family:Consolas,monospace;font-size:16px;color:#4dd0ff;letter-spacing:2px;text-decoration:none}
+.nav{display:flex;gap:18px}
+.nav a{color:#7d9dc4;text-decoration:none;font-family:Consolas,monospace;font-size:12px;letter-spacing:1px}
+.nav a:hover{color:#4dd0ff}
+.menu-btn{display:none;background:none;border:1px solid #1e3a5f;color:#4dd0ff;font-family:Consolas,monospace;font-size:11px;padding:5px 10px;border-radius:3px;cursor:pointer;letter-spacing:1px}
+.led{display:inline-block;width:8px;height:8px;border-radius:50%;background:#38f08a;margin-right:7px;box-shadow:0 0 8px #38f08a}
+.statusline{font-family:Consolas,monospace;font-size:11px;color:#7d9dc4}
+.telemetry{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1e3a5f;border-bottom:1px solid #1e3a5f}
+.t{background:#0d1b30;padding:18px 4vw;text-align:center}
+.t .v{font-family:Consolas,monospace;font-size:32px;color:#ffd166;font-weight:700}
+.t .l{font-size:10px;letter-spacing:2px;color:#7d9dc4;text-transform:uppercase;margin-top:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 4vw 50px}
+.sec-h{font-family:Consolas,monospace;color:#4dd0ff;letter-spacing:3px;font-size:13px;margin:36px 0 14px}
+.brief{border:1px solid #1e3a5f;border-left:4px solid #ffd166;background:#0d1b30;padding:22px 26px;font-size:15px;line-height:1.7;color:#a9c3e6}
+.brief b{color:#fff}
+.missions{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.m{border:1px solid #1e3a5f;background:#0d1b30;padding:18px 22px;display:flex;flex-direction:column}
+.m:hover{border-color:#4dd0ff}
+.m .id{font-family:Consolas,monospace;font-size:10.5px;color:#7d9dc4;letter-spacing:2px}
+.m .nm{font-size:19px;font-weight:700;color:#fff;margin:5px 0 7px}
+.m .ds{font-size:13px;color:#a9c3e6;line-height:1.55;flex:1}
+.m .chips{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.m .chip{font-family:Consolas,monospace;font-size:10.5px;color:#8fb8e8;border:1px solid #1e3a5f;border-radius:3px;padding:2px 8px}
+.m .stat{margin-top:12px;font-family:Consolas,monospace;font-size:11px;letter-spacing:1px}
+.op{color:#38f08a}.cd{color:#ffd166}.ft{color:#4dd0ff}
+.pbar{height:4px;background:#132c4a;margin-top:8px}
+.pbar div{height:4px}
+.m .actions{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.abtn{font-family:Consolas,monospace;font-size:12px;letter-spacing:1px;text-decoration:none;padding:8px 14px;border-radius:3px}
+.abtn.go{background:#38f08a;color:#052a14;font-weight:700}
+.abtn.src{border:1px solid #4dd0ff;color:#4dd0ff}
+.abtn.off{border:1px dashed #2c4a6e;color:#5b7a9d;cursor:default}
+.note{font-size:11.5px;color:#7d9dc4;margin-top:8px;font-family:Consolas,monospace}
+.tour{border:1px solid #1e3a5f;background:#0d1b30;padding:18px 22px;margin-bottom:14px}
+.tour h3{color:#fff;font-size:16px}
+.tour .when{font-family:Consolas,monospace;font-size:11px;color:#7d9dc4;margin:4px 0 10px;letter-spacing:1px}
+.tour ul{margin-left:18px;color:#a9c3e6;font-size:13.5px;line-height:1.7}
+.systems{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sys{border:1px solid #1e3a5f;background:#0d1b30;padding:16px 18px}
+.sys .l{font-family:Consolas,monospace;font-size:10.5px;letter-spacing:2px;color:#7d9dc4;text-transform:uppercase;margin-bottom:10px}
+.sys .chip{display:inline-block;font-size:12.5px;color:#cfe3ff;border:1px solid #1e3a5f;border-radius:12px;padding:4px 11px;margin:0 6px 8px 0}
+.log{border:1px solid #1e3a5f;background:#0d1b30;padding:18px 22px}
+.log div{font-size:14px;color:#a9c3e6;line-height:1.7;margin-bottom:6px}
+.log b{color:#fff}
+.log .rec{border-left:3px solid #38f08a;padding-left:12px;color:#cfe3ff}
+.contact{border:1px dashed #4dd0ff;padding:24px;margin-top:34px;text-align:center}
+.contact p{color:#a9c3e6;font-size:14px;margin-bottom:16px}
+.contact a{font-family:Consolas,monospace;letter-spacing:1px;color:#4dd0ff;text-decoration:none;border:1px solid #4dd0ff;padding:10px 16px;border-radius:3px;margin:4px;display:inline-block;font-size:13px}
+.contact a.primary{background:#4dd0ff;color:#06263b;font-weight:700}
+footer{padding:26px 4vw 40px;color:#5b7a9d;font-size:12px;text-align:center;font-family:Consolas,monospace;letter-spacing:1px}
+@media (max-width:760px){
+  .telemetry{grid-template-columns:repeat(2,1fr)}
+  .missions{grid-template-columns:1fr}
+  .systems{grid-template-columns:1fr}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;background:#0d1b30;flex-direction:column;padding:12px 4vw 16px;gap:12px;border-bottom:1px solid #1e3a5f}
+  .nav.open{display:flex}
+  .menu-btn{display:block}
+  .bar .statusline{display:none}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="call" href="#top">&#9672; MISSION CONTROL // ABHISHEK KUMAR</a>
+  <nav class="nav" id="nav">
+    <a href="#missions">MISSIONS</a><a href="#games">ARCADE BAY</a><a href="#tours">TOURS</a><a href="#systems">SYSTEMS</a><a href="#log">SERVICE LOG</a><a href="#contact">OPEN CHANNEL</a>
+  </nav>
+  <span class="statusline"><span class="led"></span>ALL SYSTEMS NOMINAL &middot; BLR STATION</span>
+  <button class="menu-btn" id="menuBtn" type="button">MENU</button>
+</header>
+
+<div class="telemetry" id="top">
+  <div class="t"><div class="v">22</div><div class="l">Missions Logged</div></div>
+  <div class="t"><div class="v">12</div><div class="l">Full-Stack &amp; AI Builds</div></div>
+  <div class="t"><div class="v">02</div><div class="l">Internship Tours</div></div>
+  <div class="t"><div class="v">01</div><div class="l">SSB Recommendation</div></div>
+</div>
+
+<div class="wrap">
+  <div class="sec-h">// COMMANDER BRIEF</div>
+  <div class="brief"><b>Abhishek Kumar</b>, software developer, Bangalore. B.E. Information Science &amp; Engineering (2026), CGPA 8.2. Builds real-time platforms, in-browser AI tools and Android apps across two internships in backend, ML and full-stack work. <b>Recommended by the Naval Selection Board (SSB), Visakhapatnam</b> for the Indian Navy; selection process ongoing. Open to software developer roles across India.</div>
+
+  <div class="sec-h" id="missions">// FLAGSHIP MISSIONS</div>
+  <div class="missions" id="grid-main"></div>
+
+  <div class="sec-h" id="more">// SUPPORT MISSIONS</div>
+  <div class="missions" id="grid-more"></div>
+
+  <div class="sec-h" id="games">// ARCADE BAY &middot; PRETEND PLAY CREDITS ONLY</div>
+  <div class="missions" id="grid-games"></div>
+
+  <div class="sec-h" id="tours">// TOURS OF DUTY</div>
+  <div class="tour"><h3>Python &amp; Machine Learning Intern &middot; Contriver, Bangalore</h3><div class="when">FEB 2026 &ndash; MAY 2026</div>
+  <ul><li>Built and maintained backend REST APIs and microservices in Python for ML and Generative AI features.</li><li>Built and automated ML/data pipelines.</li><li>Debugged API integration issues across preprocessing, model inference and application logic.</li><li>Worked with Git branching, pull requests, code reviews and GitHub Actions CI/CD.</li></ul></div>
+  <div class="tour"><h3>Full Stack Developer Intern &middot; Gharpayy</h3><div class="when">MAY 2025 &ndash; JUL 2025</div>
+  <ul><li>Built Fastify (Node.js) backend services and React.js features for a CRM admin panel.</li><li>Implemented data views, role-based access control and CRUD across CRM modules.</li><li>Developed responsive, accessible UI components integrated with Fastify REST endpoints.</li></ul></div>
+
+  <div class="sec-h" id="systems">// SYSTEMS &amp; TOOLING</div>
+  <div class="systems">
+    <div class="sys"><div class="l">Languages</div><span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">Kotlin</span></div>
+    <div class="sys"><div class="l">Backend &amp; APIs</div><span class="chip">REST design</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Fastify</span><span class="chip">Flask</span><span class="chip">Ktor</span><span class="chip">JWT</span></div>
+    <div class="sys"><div class="l">Frontend</div><span class="chip">React</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind CSS</span></div>
+    <div class="sys"><div class="l">Databases</div><span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span></div>
+    <div class="sys"><div class="l">Practices &amp; tools</div><span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Agile/Scrum</span><span class="chip">Unit testing</span><span class="chip">Code review</span><span class="chip">Power BI</span></div>
+    <div class="sys"><div class="l">Also</div><span class="chip">AI tools</span><span class="chip">DSA</span><span class="chip">OOP</span><span class="chip">Docker (basic)</span><span class="chip">AWS (basic)</span><span class="chip">GCP (basic)</span></div>
+  </div>
+
+  <div class="sec-h" id="log">// SERVICE LOG</div>
+  <div class="log">
+    <div><b>B.E., Information Science &amp; Engineering</b> &middot; 2022&ndash;2026 &middot; AMC Engineering College, Bangalore &middot; CGPA 8.2 / 10</div>
+    <div><b>12th (PCMC)</b> &middot; 2022 &middot; Christ Junior College &middot; 83.33%</div>
+    <div><b>10th</b> &middot; 2020 &middot; Royal Public School &middot; 93.76%</div>
+    <div class="rec">COMMENDATION: Recommended by the Naval Selection Board (SSB), Visakhapatnam, for the Indian Navy. Selection process ongoing.</div>
+    <div>NCC 'C' Certificate &middot; Thal Sainik Camp: Vice Chief Commendation</div>
+    <div>100 Days of Code (Python) &middot; Kotlin Development &middot; DevOps Fundamentals &middot; Power BI Data Analysis</div>
+  </div>
+
+  <div class="contact" id="contact">
+    <p class="mono">OPEN CHANNEL &middot; LOOKING FOR A SOFTWARE DEVELOPER ROLE &middot; EMAIL IS FASTEST</p>
+    <a class="primary" href="mailto:abhiabhisingh8050@gmail.com">abhiabhisingh8050@gmail.com</a>
+    <a href="https://www.linkedin.com/in/abhishek-kumar-3695bb335" target="_blank" rel="noopener">LINKEDIN &#8599;</a>
+    <a href="https://github.com/Abhisheksinghh23" target="_blank" rel="noopener">GITHUB &#8599;</a>
+  </div>
+</div>
+
+<footer>&copy; 2026 ABHISHEK KUMAR &middot; BANGALORE, INDIA &middot; <a href="#top" style="color:#4dd0ff">BACK TO TOP &#8593;</a></footer>
+
+<script>
+const P=[
+ {name:'DevConnect',id:'MSN-001 · FLAGSHIP · GROUP OP',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Developer-client platform with posts, search, categories, profiles, a public chat room and a private contact inbox. Group final-year project; Kotlin/Ktor backend with JWT role authorization and REST APIs. The live demo is my cleaned-up, tested version.',
+  chips:['Kotlin','Ktor','JWT','MongoDB','REST APIs'],live:'https://devconnect-app-v2kx.onrender.com/',code:null,codeLabel:'SOURCE: NOT PUBLIC',
+  note:'Demo limits: one public chat room, video calls may fail on some networks, payments record-only, free host cold start.'},
+ {name:'SketchLab',id:'MSN-002',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Browser physics sandbox: draw balls, ramps and pendulums, tune gravity and friction, run, rewind and fork experiments to compare motion and energy charts.',
+  chips:['React','TypeScript','Matter.js','23 unit tests','E2E tests'],live:'https://abhisheksinghh23.github.io/sketchlab/',code:'https://github.com/Abhisheksinghh23/sketchlab'},
+ {name:'DocMind',id:'MSN-003',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Document Q&A fully in the browser: add text, Markdown or selectable-text PDFs, get answers quoted with file and page citations. Extractive, not generative.',
+  chips:['JavaScript','Transformers.js','pdf.js','BM25 + embeddings'],live:'https://abhisheksinghh23.github.io/docmind/',code:'https://github.com/Abhisheksinghh23/docmind',
+  note:'First load downloads about 85 MB of model files.'},
+ {name:'TutorLedger',id:'MSN-004',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Finance command deck for solo tuition teachers: students, batches, fees, partial payments, receipts, WhatsApp reminder drafts, CSV import/export and backup.',
+  chips:['React','Firebase Auth','Firebase'],live:'https://tutorledger-8eac4.web.app',code:null,codeLabel:'SOURCE: PRIVATE REPOSITORY'},
+ {name:'AccessiPlan',id:'MSN-005',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NOT DEPLOYED',fill:85,fillColor:'#ffd166',
+  desc:'Generates personalised, accessibility-aware travel plans with the OpenAI API, including an AI chatbot. React frontend, Flask REST API, MongoDB schemas, Docker Compose setup.',
+  chips:['React','Flask','MongoDB','OpenAI API','Docker'],live:null,code:'https://github.com/Abhisheksinghh23/accessibility-needs-generative-planner'},
+ {name:'APIFlux',id:'MSN-006',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NOT DEPLOYED',fill:85,fillColor:'#ffd166',
+  desc:'Postman-style API client: all common HTTP methods, auth modes, saved collections, history, environment variables and a JSON viewer, with a server-side CORS proxy.',
+  chips:['React','Node.js','Express','MongoDB'],live:null,code:'https://github.com/Abhisheksinghh23/apiflux'},
+ {name:'Mudra Mirror',id:'MSN-007',stat:'ft',statText:'● STATUS: FIELD TRIAL · ACCURACY UNVALIDATED',fill:70,fillColor:'#4dd0ff',
+  desc:'On-device webcam ML: show a Bharatanatyam hand gesture (mudra) and the app names it. Ten gestures, mirror-game mode, no video uploaded.',
+  chips:['JavaScript','Hand-landmark model','On-device'],live:'https://abhisheksinghh23.github.io/mudra-mirror/',code:'https://github.com/Abhisheksinghh23/mudra-mirror'},
+];
+const MORE=[
+ {name:'Mission Control',id:'MSN-008',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NO DEMO LINKED',fill:85,fillColor:'#ffd166',
+  desc:'SSB officer-selection simulator (PPDT, TAT, WAT, SRT, OIR drills, GTO and interview practice, PIQ form, progress dashboard) plus career tools: resume builder, job matcher, mock interview, application tracker.',
+  chips:['React','TypeScript','Vite','Tailwind','Dexie'],live:null,code:'https://github.com/Abhisheksinghh23/missionssb'},
+ {name:'SocialConnect',id:'MSN-009',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NOT DEPLOYED',fill:85,fillColor:'#ffd166',
+  desc:'Social media app: registration, profiles with avatars, image posts, likes, comments, follows and a feed. Next.js route handlers backed by Supabase.',
+  chips:['Next.js','TypeScript','Tailwind','Supabase'],live:null,code:'https://github.com/Abhisheksinghh23/social-connect'},
+ {name:'Meeting Transcript Signal Analyzer',id:'MSN-010 · INTERNSHIP ASSIGNMENT (NIMITAI)',stat:'op',statText:'● STATUS: OPERATIONAL · LIVE DEMO',fill:100,fillColor:'#38f08a',
+  desc:'Paste a sales-call transcript; returns buying signals, objections and pricing concerns with exact quotes and a coaching tip each. Demo mode when no API key is set.',
+  chips:['React','Vite','Node.js','Express','OpenAI API'],live:'https://nimitai.vercel.app',code:'https://github.com/Abhisheksinghh23/nimitai'},
+ {name:'Smart Match Allocation System',id:'MSN-011',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NO DEMO',fill:85,fillColor:'#ffd166',
+  desc:'FastAPI + SQLite match allocator: per-format limits, recovery days, next-day priority, admin overrides, transfers and an audit log. Pytest suite included.',
+  chips:['Python','FastAPI','SQLite','pytest'],live:null,code:'https://github.com/Abhisheksinghh23/schedule_generator'},
+ {name:'Voice Assistant',id:'MSN-012',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · ANDROID ONLY',fill:85,fillColor:'#ffd166',
+  desc:'Siri-style Android voice assistant in Java: speech recognition and TTS, spoken time/date, opening apps, calls, search, YouTube and jokes, optional OpenAI fallback.',
+  chips:['Java','Android','Speech APIs'],live:null,code:'https://github.com/Abhisheksinghh23/VoiceAssistant'},
+];
+const GAMES=[
+ {name:'Ten-Sign Duel',id:'GM-01 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Pick one of ten symbols in a circle; each symbol beats the next three clockwise.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/playcredit-ten-sign-duel/',code:'https://github.com/Abhisheksinghh23/playcredit-ten-sign-duel'},
+ {name:'Harbor Strike',id:'GM-02 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Hide-and-strike on a ten-cell circular harbor: a ship covers three adjacent cells, pick one to fire at.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/playcredit-harbor-strike/',code:'https://github.com/Abhisheksinghh23/playcredit-harbor-strike'},
+ {name:'Number Card',id:'GM-03 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Build a card of three different numbers from 1 to 10, then one number is drawn; match it to win.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/playcredit-number-card/',code:'https://github.com/Abhisheksinghh23/playcredit-number-card'},
+ {name:'Margin Duel',id:'GM-04 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'You and the computer each draw a card from 1 to 20; yours must be at least five higher to win.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/playcredit-margin-duel/',code:'https://github.com/Abhisheksinghh23/playcredit-margin-duel'},
+ {name:'Cave Dig',id:'GM-05 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Pick one tile in a 20-tile cave hiding six gems; find a gem to win.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/playcredit-cave-dig/',code:'https://github.com/Abhisheksinghh23/playcredit-cave-dig'},
+ {name:'Neon Rail Runner',id:'GM-06 · SKILL GAME',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Neon-city runner: lane switching, jumps and slides.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/neon-arcade/neon-rail-runner/',code:'https://github.com/Abhisheksinghh23/neon-arcade'},
+ {name:'Rune Forge Duel',id:'GM-07 · SKILL GAME',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Tactical 5\u00d75 rune board game against three AI levels.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/neon-arcade/rune-forge-duel/',code:'https://github.com/Abhisheksinghh23/neon-arcade'},
+ {name:'Spirit Lantern Vault',id:'GM-08 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Misty temple of glowing lanterns; pick one to reveal it.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/neon-arcade/spirit-lantern-vault/',code:'https://github.com/Abhisheksinghh23/neon-arcade'},
+ {name:'Orbit Beacon',id:'GM-09 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Animated solar system; send a probe to a planet.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/neon-arcade/orbit-beacon/',code:'https://github.com/Abhisheksinghh23/neon-arcade'},
+ {name:'Clockwork Heist',id:'GM-10 · CHANCE · PLAY CREDITS',stat:'op',statText:'● PLAYABLE',fill:100,fillColor:'#38f08a',desc:'Brass-gear vault with a lever reveal.',chips:['Static site'],live:'https://abhisheksinghh23.github.io/neon-arcade/clockwork-heist/',code:'https://github.com/Abhisheksinghh23/neon-arcade'},
+];
+function card(p){
+  const el=document.createElement('article');el.className='m';
+  let acts='';
+  if(p.live)acts+='<a class="abtn go" href="'+p.live+'" target="_blank" rel="noopener">OPEN LIVE &#8599;</a>';
+  if(p.code)acts+='<a class="abtn src" href="'+p.code+'" target="_blank" rel="noopener">SOURCE &#8599;</a>';
+  else acts+='<span class="abtn off">'+p.codeLabel+'</span>';
+  el.innerHTML='<div class="id">'+p.id+'</div><div class="nm">'+p.name+'</div><div class="ds">'+p.desc+'</div>'
+   +'<div class="chips">'+p.chips.map(c=>'<span class="chip">'+c+'</span>').join('')+'</div>'
+   +'<div class="stat '+p.stat+'">'+p.statText+'</div><div class="pbar"><div style="width:'+p.fill+'%;background:'+p.fillColor+'"></div></div>'
+   +(p.note?'<div class="note">'+p.note+'</div>':'')
+   +'<div class="actions">'+acts+'</div>';
+  return el;
+}
+P.forEach(p=>document.getElementById('grid-main').appendChild(card(p)));
+MORE.forEach(p=>document.getElementById('grid-more').appendChild(card(p)));
+GAMES.forEach(p=>document.getElementById('grid-games').appendChild(card(p)));
+const nav=document.getElementById('nav');
+document.getElementById('menuBtn').addEventListener('click',()=>nav.classList.toggle('open'));
+nav.addEventListener('click',()=>nav.classList.remove('open'));
+</script>
+</body>
+</html>
