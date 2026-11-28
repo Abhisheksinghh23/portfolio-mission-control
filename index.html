@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abhishek Kumar | Mission Control</title>
-<meta name="description" content="Abhishek Kumar, software developer in Bangalore. 27 projects tracked as missions: live demos and source across full-stack, AI and browser apps.">
+<meta name="description" content="Abhishek Kumar, software developer in Bangalore. 28 projects tracked as missions: live demos and source across full-stack, AI and browser apps.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,Arial,sans-serif}
 html{scroll-behavior:smooth}
@@ -83,7 +83,7 @@ footer{padding:26px 4vw 40px;color:#5b7a9d;font-size:12px;text-align:center;font
 </header>
 
 <div class="telemetry" id="top">
-  <div class="t"><div class="v">27</div><div class="l">Missions Logged</div></div>
+  <div class="t"><div class="v">28</div><div class="l">Missions Logged</div></div>
   <div class="t"><div class="v">12</div><div class="l">Full-Stack &amp; AI Builds</div></div>
   <div class="t"><div class="v">02</div><div class="l">Internship Tours</div></div>
   <div class="t"><div class="v">01</div><div class="l">SSB Recommendation</div></div>
@@ -185,6 +185,10 @@ const P=[
   desc:'Redis-protocol server in Java 17 with no dependencies. Single-threaded NIO event loop, RESP2 parser, about 45 commands over strings, lists, hashes and sets, key expiry, and an append-only file with crash recovery. Checked with 32 tests, a 440,000-command differential fuzz against Redis 6.2.14 with no mismatches, and a kill -9 durability test.',
   chips:['Java 17', 'NIO', 'RESP2', 'Append-only file', 'Differential fuzzing'],live:'https://abhisheksinghh23.github.io/redisj/',code:'https://github.com/Abhisheksinghh23/redisj',
   note:'Browser demo runs the command engine only on CheerpJ, in memory, with no sockets or append-only file; the server runs locally, loopback only. A command subset, not a full Redis replacement: no auth, pub/sub, MULTI or replication. Tested against process crashes, not power loss. No performance claim.'},
+ {name:'patchpilot',id:'MSN-018',stat:'cd',statText:'● STATUS: LIVE BROWSER DEMO',fill:85,fillColor:'#ffd166',
+  desc:'Bug-fixing agent with no dependencies. Reproduces a failing test suite, asks an LLM to locate and patch the bug, applies the unified diff with its own stdlib parser, and accepts the fix only if the full suite then passes (patches touching tests are rejected). Single-call and pipeline modes, round-level checkpointing, and a hardened Docker executor (non-root, network blocked, capabilities dropped). 40 unit tests; 15/15 on a self-authored seeded-bug suite with a free model; Docker-isolated repair verified on GitHub Actions.',
+  chips:['Python', 'pytest', 'Docker', 'LLM agent', 'Pyodide'],live:'https://abhisheksinghh23.github.io/patchpilot/',code:'https://github.com/Abhisheksinghh23/patchpilot',
+  note:'Browser demo repairs only the 15 bundled self-authored fixtures, inside a WebAssembly sandbox in the browser (Pyodide); nothing runs on a server and state resets on reload. The model is the Pollinations anonymous free tier (best effort, so a repair can take a minute). Docker isolation is verified only in the GitHub Actions spike, not the browser demo. Seeded-bug results are limited evidence, not a SWE-bench score.'},
 ];
 const MORE=[
  {name:'Mission Control',id:'MSN-008',stat:'cd',statText:'● STATUS: SOURCE AVAILABLE · NO DEMO LINKED',fill:85,fillColor:'#ffd166',
